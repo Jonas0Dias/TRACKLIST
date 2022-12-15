@@ -13,7 +13,7 @@ export default function Cadastro(props){
         <Home>
         <Imagem>
         
-        <h1>TrackIt</h1>
+        <img src="./assets/img/logo.png"></img>
 
         </Imagem>
         <Inputs>
@@ -22,6 +22,7 @@ export default function Cadastro(props){
         <input type='text' placeholder="nome" onChange={e => setUsuario({...usuario, name: e.target.value})} disabled={props.habilitado}></input>
         <input type='url' placeholder="imagem" onChange={e => setUsuario({...usuario, image: e.target.value})} disabled={props.habilitado}></input>
         <input type='password' placeholder="senha" onChange={e => setUsuario({...usuario, password: e.target.value})} disabled={props.habilitado}></input>
+
         <Button onClick={() => {
             setEntrar('')
             props.setHabilitado(true)
@@ -36,12 +37,13 @@ export default function Cadastro(props){
         height="80" 
         width="80" 
         radius="9"
-        color="#white" 
+        color="white" 
         ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClassName=""
         visible={true}
-         />}</Button>
+         />}
+         </Button>
 
         </Inputs>
         <Link to='/'><p className="cadastro" > Já tem uma conta? Faça login!</p></Link>

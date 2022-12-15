@@ -9,3 +9,10 @@
     color: #52B6FF;
     
 }
+
+.barraprogresso{
+    position: absolute;
+    width: 91px;
+    left: 38%;
+    bottom: 20%;
+}

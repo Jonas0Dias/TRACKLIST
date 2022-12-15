@@ -11,9 +11,7 @@ export default function HomePag(props){
     return(
         <Home>
         <Imagem>
-        
-        <h1>TrackIt</h1>
-
+        <img src="./assets/img/logo.png"></img>
         </Imagem>
         <Inputs>
 
@@ -36,7 +34,7 @@ export default function HomePag(props){
         height="80" 
         width="80" 
         radius="9"
-        color="#white" 
+        color="white" 
         ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClassName=""

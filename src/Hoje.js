@@ -1,41 +1,21 @@
 import styled from "styled-components"
-
-
-
+import Footer from "./Footer";
+import Header from "./Header";
 export default function Hoje(props){
     console.log(props.dadosusuario)
+    const percentage = 66;
     return (
-        <Header><p>TrackIt</p><img src={props.dadosusuario.data.image}></img></Header>
+        <Today>
+        <Header dadosusuario={props.dadosusuario}></Header>
+
+        {/* Aqui é onde entra o conteúdo da página, abaixo de header e acima de fotter */}
+
+        <Footer></Footer>
+        </Today>
     )
 }
 
-
-const Header = styled.div`
-width: 100%;
-height: 70px;
-position:fixed;
-left: 0px;
-top: 0px;
-background: #126BA5;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-display:flex;
-justify-content: space-between;
-align-items:center;
-
-p{
-    font-family: 'Playball';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 38.982px;
-    line-height: 49px;
-    color: #FFFFFF;
-    margin-left:18px;
-}
-
-img {
-    width: 51px;
-    height: 51px;
-    border-radius: 50%;
-    margin-right:18px;
-}
+const Today= styled.div`
+background: #E5E5E5;
+height: 100vh;
 `
