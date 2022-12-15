@@ -2,10 +2,12 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import React from "react"
-export default function HomePag(){
+import { useNavigate } from "react-router-dom"
 
+export default function Cadastro(props){
+    const navigate=useNavigate();
     const [usuario, setUsuario] = React.useState({email:'',name:'',image:'',password:''})
-    const[habilitado, setHabilitado] = React.useState(false)
+    
     console.log(usuario)
     return(
         <Home>
@@ -16,17 +18,17 @@ export default function HomePag(){
         </Imagem>
         <Inputs>
 
-        <input type='text' placeholder="email" value={usuario.email} onChange={e => setUsuario({...usuario, email: e.target.value})} disabled={habilitado}></input>
-        <input type='text' placeholder="senha" onChange={e => setUsuario({...usuario, name: e.target.value})} disabled={habilitado}></input>
-        <input type='text' placeholder="nome" onChange={e => setUsuario({...usuario, image: e.target.value})} disabled={habilitado}></input>
-        <input type='text' placeholder="foto" onChange={e => setUsuario({...usuario, password: e.target.value})} disabled={habilitado}></input>
+        <input type='email' placeholder="email" value={usuario.email} onChange={e => setUsuario({...usuario, email: e.target.value})} disabled={props.habilitado}></input>
+        <input type='text' placeholder="nome" onChange={e => setUsuario({...usuario, name: e.target.value})} disabled={props.habilitado}></input>
+        <input type='url' placeholder="imagem" onChange={e => setUsuario({...usuario, image: e.target.value})} disabled={props.habilitado}></input>
+        <input type='password' placeholder="senha" onChange={e => setUsuario({...usuario, password: e.target.value})} disabled={props.habilitado}></input>
         <Button onClick={() => {
             
-            setHabilitado(true)
+            props.setHabilitado(true)
             axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', usuario).then(()=>  {
-                setHabilitado(false);
-                <Link to='/'></Link>;
-        })
+                props.setHabilitado(false);
+                navigate('/')
+        }).catch(() => props.setHabilitado(false))
         }}> Cadastrar</Button>
 
         </Inputs>

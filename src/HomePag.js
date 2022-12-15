@@ -1,7 +1,10 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-
-export default function HomePag(){
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+export default function HomePag(props){
+    const navigate=  useNavigate();
+    console.log(props.login)
     return(
         <Home>
         <Imagem>
@@ -11,9 +14,21 @@ export default function HomePag(){
         </Imagem>
         <Inputs>
 
-        <input type='text' placeholder="email"></input>
-        <input type='text' placeholder="senha"></input>
-        <Button> Entrar</Button>
+        <input type='email' placeholder="email" disabled={props.habilitado} onChange={e => props.setLogin({...props.login, email: e.target.value})}></input>
+        <input type='password' placeholder="senha" disabled={props.habilitado} onChange={e => props.setLogin({...props.login, password: e.target.value})}></input>
+        <Button  onClick={() => {
+            
+            props.setHabilitado(true)
+            axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', props.login).then((resp)=>  {
+                props.setDadosUsuario(resp)
+                props.setHabilitado(false);
+                console.log(resp)
+                navigate('/hoje')
+        }).catch(() => {
+            props.setHabilitado(false)
+            alert('Usuário ou senha incorretos')
+        })
+        }} > Entrar</Button>
 
         </Inputs>
         <Link to='/cadastro'><p className="cadastro" > Não tem uma conta? Cadastre-se</p></Link>
