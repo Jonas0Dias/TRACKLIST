@@ -1,10 +1,13 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import React from "react";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 export default function HomePag(props){
     const navigate=  useNavigate();
     console.log(props.login)
+    const[entrar, setEntrar] = React.useState('Entrar')
     return(
         <Home>
         <Imagem>
@@ -17,7 +20,7 @@ export default function HomePag(props){
         <input type='email' placeholder="email" disabled={props.habilitado} onChange={e => props.setLogin({...props.login, email: e.target.value})}></input>
         <input type='password' placeholder="senha" disabled={props.habilitado} onChange={e => props.setLogin({...props.login, password: e.target.value})}></input>
         <Button  onClick={() => {
-            
+            setEntrar('')
             props.setHabilitado(true)
             axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', props.login).then((resp)=>  {
                 props.setDadosUsuario(resp)
@@ -26,9 +29,19 @@ export default function HomePag(props){
                 navigate('/hoje')
         }).catch(() => {
             props.setHabilitado(false)
+            setEntrar('Entrar')
             alert('Usuário ou senha incorretos')
         })
-        }} > Entrar</Button>
+        }} > {entrar==='Entrar' ? entrar : <ThreeDots 
+        height="80" 
+        width="80" 
+        radius="9"
+        color="#white" 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+         />}</Button>
 
         </Inputs>
         <Link to='/cadastro'><p className="cadastro" > Não tem uma conta? Cadastre-se</p></Link>
@@ -93,4 +106,7 @@ const Button = styled.button`
     font-weight: 400;
     font-size: 20.976px;
     color: #FFFFFF;
+    display:flex;
+    justify-content: center;
+    align-items:center;
 `
