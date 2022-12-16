@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { CircularProgressbar, buildStyles } from'react-circular-progressbar';
+import { Link } from "react-router-dom";
+import axios from "axios";
 export default function Footer() {
     const percentage = 66;
     return (
@@ -18,8 +20,8 @@ export default function Footer() {
                     pathColor: "#fff",
                     trailColor: "transparent"
                 })} />
-            <p>Hábitos</p>
-            <p>Histórico</p>
+            <Link to='/habitos'><p>Hábitos</p></Link>
+            <Link to='/historico'><p>Histórico</p></Link>
         </Rodapé>
     )
 }

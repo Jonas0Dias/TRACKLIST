@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import React from "react";
 import styled from "styled-components";
-import HomePag from "./HomePag";
-import Cadastro from "./Cadastro";
-import Hoje from "./Hoje";
+import HomePag from "./components/HomePag";
+import Cadastro from "./components/Cadastro";
+import Hoje from "./components/Hoje";
+import Habitos from "./components/Habitos";
+import Historico from "./components/Historico";
 
 function App() {
 
@@ -16,7 +18,8 @@ function App() {
     <Route path='/' element={<HomePag habilitado={habilitado} setHabilitado={setHabilitado} login={login} setLogin={setLogin} dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario}></HomePag>}></Route>
     <Route path="/cadastro" element={<Cadastro habilitado={habilitado} setHabilitado={setHabilitado}></Cadastro>}></Route>
     <Route path="/hoje" element={<Hoje dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario}></Hoje>}></Route>
-
+    <Route path='/habitos' element ={<Habitos dadosusuario={dadosusuario} ></Habitos>}/>
+    <Route path='/historico' element ={<Historico></Historico>}/>
     </Routes>
     </BrowserRouter>
   );
