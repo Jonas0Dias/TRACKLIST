@@ -67,5 +67,8 @@ input{
     line-height: 25px;
     color: #DBDBDB;
 }
+.days{
+    width: 260px;
+
 }
 `

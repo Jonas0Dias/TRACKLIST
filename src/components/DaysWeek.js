@@ -32,11 +32,12 @@ export default function DaysWeek(props){
 
 
 export const Botao=styled.div`
+    justify-content: center;
     pointer-events:${props => props.dis ? 'none' :'all'};
     display:flex;
     align-items:center;
-    width:48px;
-    height: 48px;
+    width:30px;
+    height: 30px;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;

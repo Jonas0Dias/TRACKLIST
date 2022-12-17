@@ -117,11 +117,14 @@ const Habito = styled.div`
     .daysweek{
         display:flex;
         justify-content: space-between;
+        margin-top: 10px;
+        width: 260px;
     }
 `
 
 
 const Habits = styled.div`
+
 background: #E5E5E5;
 .habitspag{
     padding-top: 90px;
@@ -177,7 +180,7 @@ background: #E5E5E5;
 .days{
     display:flex;
     justify-content:space-between;
-    width:392px;
+    width:260px;
    
 }
 
