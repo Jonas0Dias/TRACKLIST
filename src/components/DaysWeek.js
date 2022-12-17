@@ -3,10 +3,19 @@ import React from "react"
 import styled from "styled-components"
 
 export default function DaysWeek(props){
-    const [on, setOn]=React.useState(false)
+    const [on, setOn] = React.useState(false)
+    const [dayselected, setDaySelected] =  React.useState(false)
+ 
+
+    React.useEffect(() => {
+        if(props.days.includes(props.pos)){
+                setDaySelected(true)
+           }
+
+    }, [])
 
     return (
-        <Botao on={on} onClick={() => {
+        <Botao dis={props.dis} dayselected={dayselected} on={on} onClick={() => {
             console.log(props.habitdata.days)
             setOn(!on)        
             if (props.habitdata.days.includes(props.pos)){
@@ -17,12 +26,13 @@ export default function DaysWeek(props){
                 props.setHabitData({...props.habitdata, days: [...props.habitdata.days, props.pos].sort()})
             }
 
-        }}>{props.d}</Botao>
+        }}>{props.name}</Botao>
     )
 }
 
 
-const Botao=styled.div`
+export const Botao=styled.div`
+    pointer-events:${props => props.dis ? 'none' :'all'};
     display:flex;
     align-items:center;
     width:48px;
@@ -32,8 +42,8 @@ const Botao=styled.div`
     font-weight: 400;
     font-size: 19.976px;
     line-height: 25px;
-    color: ${props => props.on ? '##FFFFFF' : '#DBDBDB'};
-    background: ${props => props.on ? '#CFCFCF' : '#FFFFFF'};
+    color: ${props => props.on || props.dayselected ? '#FFFFFF' : '#DBDBDB'};
+    background: ${props => props.on || props.dayselected ? '#CFCFCF' : '#FFFFFF'};
     border: 1px solid #D5D5D5;
     border-radius: 5px;
     text-align: center;

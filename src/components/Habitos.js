@@ -5,30 +5,30 @@ import Header from "./Header"
 import Footer from "./Footer"
 import React from "react"
 import DaysWeek from "./DaysWeek"
-
+import CreateHabit from "./CreateHabit"
+import daysweek from "./diasdasemana"
 
 export default function Habitos(props) {
-    const daysweek = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
+
+    
     const [habitos, setHabitos] = React.useState('')
     const [on, setOn] = React.useState(false)
-    console.log(habitos)
     const config = {
         headers: {
             Authorization: `Bearer ${props.dadosusuario.data.token}`
         }
     }
     React.useEffect(() => {
-       
+
         axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config).then((resp) => {
-            console.log(typeof (resp))
             setHabitos(resp)
         })
     }, [])
-    console.log(typeof (habitos))
     if (typeof (habitos) === 'string') {
 
     }
     if (typeof (habitos) === 'object' && habitos.data.length === 0) {
+        
         return (
             <Habits>
                 <Header dadosusuario={props.dadosusuario} on={on}></Header>
@@ -37,73 +37,95 @@ export default function Habitos(props) {
                         <p>Meus hábitos</p>
                         <button onClick={() => setOn(true)}><img src="./assets/img/+.png"></img></button>
                     </div>
-                    <Habito on={on}>
-                        <input type='text' placeholder="nome do habito" value={props.habitdata.name} onChange={e => props.setHabitData({...props.habitdata, name: e.target.value})}></input>
-                        <div className="days">
-                            {daysweek.map(d => 
-                                <DaysWeek pos={daysweek.indexOf(d)} d={d} habitdata={props.habitdata} setHabitData={props.setHabitData}></DaysWeek>
-
-                            )}
-                        </div>
-                        <div className="botoes">
-                            <button onClick={() => setOn(false)}>Cancelar</button>
-                            <button onClick={() => {
-                                console.log(props.habitdata)
-                                setOn(false);
-                                axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', props.habitdata, config ).then((resp) => console.log(resp))
-                                
-                                }}>Salvar</button>
-                        </div>
-
-                    </Habito>
+                    <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config}></CreateHabit>
                     <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
                 </div>
                 <Footer></Footer>
             </Habits>
         )
     }
-    return (
-        <></>
 
-    )
+    if ((typeof (habitos) === 'object' && habitos.data.length !== 0)){
+    console.log(habitos.data)
+        return (
+            <Habits>
+                <Header dadosusuario={props.dadosusuario} on={on}></Header>
+                <div className="habitspag">
+
+                    <div className="topo">
+                        <p>Meus hábitos</p>
+                        <button onClick={() => setOn(true)}><img src="./assets/img/+.png"></img></button>
+                    </div>
+                    
+                    <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config} ></CreateHabit>
+
+                    {habitos.data.map(h => <Habito><div className="titulo"><p>{h.name}</p><img src="./assets/img/trash.png" onClick={() => {
+                            axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${h.id}`, config).then(() => {console.log('sucesso')
+                            axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config).then((resp) => {
+                                setHabitos(resp)
+                            })
+                        }
+                            
+                            )
+
+                    }}></img></div>
+                    <div className="daysweek" >
+                    {daysweek.map(d =>
+                                <DaysWeek dis={true} pos={parseInt(d.pos)} days={h.days} name={d.name} habitdata={props.habitdata} setHabitData={props.setHabitData}></DaysWeek>
+
+                            )}</div></Habito>)}
+                     
+
+
+                </div>
+
+
+                <Footer></Footer>
+            </Habits>
+
+        )
+                }
 }
+
 
 const Habito = styled.div`
-margin-left: 15px;
-margin-top: 22px;
-display:${props => props.on ? 'block' : 'none'};
-width: 95%;
-padding: 17px 17px;
-box-sizing: border-box;
-left: 17px;
-top: 147px;
-height: 200px;
-background: #FFFFFF;
-border-radius: 5px;
-input{
     box-sizing: border-box;
-    width: 100%;
-    height: 45px;
+    width: 94%;
+    padding: 17px 17px;
+    margin:auto;
+    margin-top: 17px;
     background: #FFFFFF;
-    border: 1px solid #D5D5D5;
     border-radius: 5px;
-    margin-bottom:8px;
-}
-&::placeholder{
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 19.976px;
-    line-height: 25px;
-    color: #DBDBDB;
-}
-}
+    p{
+        font-family: 'Lexend Deca';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 19.976px;
+        line-height: 25px;
+        color: #666666;
+    }
+    img{
+        width: 15px;
+        height: 15px;
+    }
+
+    .titulo{
+        display:flex;
+        justify-content: space-between;
+    }
+
+    .daysweek{
+        display:flex;
+        justify-content: space-between;
+    }
 `
+
+
 const Habits = styled.div`
 background: #E5E5E5;
-height: 100vh;
 .habitspag{
     padding-top: 90px;
+    padding-bottom: 90px;
     & h1{
         font-family: 'Lexend Deca';
         font-style: normal;
