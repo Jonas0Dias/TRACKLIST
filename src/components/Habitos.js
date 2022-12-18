@@ -37,7 +37,7 @@ export default function Habitos(props) {
                         <p>Meus hábitos</p>
                         <button onClick={() => setOn(true)}><img src="./assets/img/+.png"></img></button>
                     </div>
-                    <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config}></CreateHabit>
+                    <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config} setTodayHabits={props.setTodayHabits}></CreateHabit>
                     <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
                 </div>
                 <Footer></Footer>
@@ -57,7 +57,7 @@ export default function Habitos(props) {
                         <button onClick={() => setOn(true)}><img src="./assets/img/+.png"></img></button>
                     </div>
                     
-                    <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config} ></CreateHabit>
+                    <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config} setTodayHabits={props.setTodayHabits} ></CreateHabit>
 
                     {habitos.data.map(h => <Habito><div className="titulo"><p>{h.name}</p><img src="./assets/img/trash.png" onClick={() => {
                             axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${h.id}`, config).then(() => {console.log('sucesso')
@@ -88,7 +88,7 @@ export default function Habitos(props) {
 }
 
 
-const Habito = styled.div`
+export const Habito = styled.div`
     box-sizing: border-box;
     width: 94%;
     padding: 17px 17px;
@@ -96,6 +96,30 @@ const Habito = styled.div`
     margin-top: 17px;
     background: #FFFFFF;
     border-radius: 5px;
+
+    .titulo div{
+        align-items:center;
+        display:flex;
+        justify-content:center;
+        width: 69px;
+        height: 69px;
+        background: ${props => props.check ? 'green' : '#EBEBEB' };
+        border: 1px solid #E7E7E7;
+        border-radius: 5px;
+        & img{
+            width:35px;
+            height:28px;
+        }
+    }
+
+    h1,h2{
+        font-family: 'Lexend Deca';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12.976px;
+        line-height: 16px;
+        color: #666666;
+        }
     p{
         font-family: 'Lexend Deca';
         font-style: normal;
@@ -124,7 +148,7 @@ const Habito = styled.div`
 
 
 const Habits = styled.div`
-
+height:100vh;
 background: #E5E5E5;
 .habitspag{
     padding-top: 90px;

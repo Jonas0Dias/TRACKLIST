@@ -2,10 +2,29 @@ import styled from "styled-components"
 import Footer from "./Footer";
 import Header from "./Header";
 import dayjs from "dayjs";
+import { Habito } from "./Habitos";
+import axios from "axios";
+import React from "react";
+import TodayHabits from "./TodayHabits";
 
 export default function Hoje(props){
+    
     console.log(props.dadosusuario)
     const percentage = 66;
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${props.dadosusuario.data.token}`
+        }
+    }
+
+
+    React.useEffect(() => {axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', config).then((resp) => {
+        props.setTodayHabits(resp.data)
+        console.log(resp)
+    } )}, [])
+
+
     return (
         <Today>
         <Header dadosusuario={props.dadosusuario}></Header>
@@ -14,7 +33,8 @@ export default function Hoje(props){
         <h2>Nenhum hábito concluído ainda</h2>
         </div>
         {/* Aqui é onde entra o conteúdo da página, abaixo de header e acima de fotter */}
-
+        {props.todayhabits.map(t =><TodayHabits t={t}></TodayHabits> )}
+        
         <Footer></Footer>
         </Today>
     )
@@ -23,10 +43,11 @@ export default function Hoje(props){
 const Today= styled.div`
 background: #E5E5E5;
 height: 100vh;
+
+
 .day{
-    position: absolute;
-    top: 98px;
-    left: 17px;
+    padding-top: 85px;
+    padding-left: 17px;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;

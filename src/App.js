@@ -8,7 +8,7 @@ import Habitos from "./components/Habitos";
 import Historico from "./components/Historico";
 
 function App() {
-
+  const [todayhabits, setTodayHabits] =  React.useState([])
   const[habilitado, setHabilitado] = React.useState(false)
   const [login, setLogin] = React.useState({email:'' , password:''})
   const [dadosusuario, setDadosUsuario] =  React.useState({})
@@ -19,8 +19,8 @@ function App() {
     <Routes>
     <Route path='/' element={<HomePag habilitado={habilitado} setHabilitado={setHabilitado} login={login} setLogin={setLogin} dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario}></HomePag>}></Route>
     <Route path="/cadastro" element={<Cadastro habilitado={habilitado} setHabilitado={setHabilitado}></Cadastro>}></Route>
-    <Route path="/hoje" element={<Hoje dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario}></Hoje>}></Route>
-    <Route path='/habitos' element ={<Habitos dadosusuario={dadosusuario} habitdata={habitdata} setHabitData={setHabitData} listahabitos={listahabitos} setListaHabitos={setListaHabitos}></Habitos>}/>
+    <Route path="/hoje" element={<Hoje dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario} todayhabits={todayhabits} setTodayHabits={setTodayHabits}></Hoje>}></Route>
+    <Route path='/habitos' element ={<Habitos dadosusuario={dadosusuario} habitdata={habitdata} setHabitData={setHabitData} listahabitos={listahabitos} setListaHabitos={setListaHabitos} setTodayHabits={setTodayHabits}></Habitos>}/>
     <Route path='/historico' element ={<Historico></Historico>}/>
     </Routes>
     </BrowserRouter>

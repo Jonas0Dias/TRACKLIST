@@ -30,6 +30,10 @@ export default function CreateHabit(props){
 
                                 })
                                 props.setHabitData({name:'', days:[]})
+                                axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', props.config).then((resp) => {
+        props.setTodayHabits(resp.data)
+        console.log(resp)
+    } )
                             }}>Salvar</button>
                         </div>
 
