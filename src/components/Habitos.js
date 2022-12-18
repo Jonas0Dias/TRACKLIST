@@ -80,7 +80,7 @@ export default function Habitos(props) {
                 </div>
 
 
-                <Footer></Footer>
+                <Footer qtddhabitos={props.qtddhabitos} habitosfeitos={props.habitosfeitos}></Footer>
             </Habits>
 
         )

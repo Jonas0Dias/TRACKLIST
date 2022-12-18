@@ -2,13 +2,17 @@ import styled from "styled-components"
 import { CircularProgressbar, buildStyles } from'react-circular-progressbar';
 import { Link } from "react-router-dom";
 import axios from "axios";
-export default function Footer() {
-    const percentage = 66;
+import { Navigate } from "react-router-dom";
+
+
+export default function Footer(props) {
+
     return (
         <Rodapé>
-            <CircularProgressbar
+            
+            <CircularProgressbar onCLick={() => console.log('teste')}
                 className="barraprogresso"
-                value={percentage} text={`${percentage}%`}
+                value={props.habitosfeitos.length*100/props.qtddhabitos} text={`Hoje`}
                 background
                 backgroundPadding={6}
                 styles={buildStyles({
