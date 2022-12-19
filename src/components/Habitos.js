@@ -103,7 +103,7 @@ export const Habito = styled.div`
         justify-content:center;
         width: 69px;
         height: 69px;
-        background: ${props => props.check ? 'green' : '#EBEBEB' };
+        background: ${props => props.done ? 'green' : '#EBEBEB' };
         border: 1px solid #E7E7E7;
         border-radius: 5px;
         & img{

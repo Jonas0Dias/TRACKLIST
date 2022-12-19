@@ -21,8 +21,8 @@ function App() {
     <Routes>
     <Route path='/' element={<HomePag habilitado={habilitado} setHabilitado={setHabilitado} login={login} setLogin={setLogin} dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario}></HomePag>}></Route>
     <Route path="/cadastro" element={<Cadastro habilitado={habilitado} setHabilitado={setHabilitado}></Cadastro>}></Route>
-    <Route path="/hoje" element={<Hoje dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario} todayhabits={todayhabits} setTodayHabits={setTodayHabits} qtddhabitos={qtddhabitos} setQtddHabitos={setQtddHabitos} habitosfeitos={habitosfeitos} setHabitosFeitos={setHabitosFeitos}></Hoje>}></Route>
-    <Route path='/habitos' element ={<Habitos dadosusuario={dadosusuario} habitdata={habitdata} setHabitData={setHabitData} listahabitos={listahabitos} setListaHabitos={setListaHabitos} setTodayHabits={setTodayHabits} habitosfeitos={habitosfeitos} setHabitosFeitos={setHabitosFeitos}></Habitos>}/>
+    <Route path="/hoje" element={<Hoje dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario} todayhabits={todayhabits} setTodayHabits={setTodayHabits} qtddhabitos={qtddhabitos} setQtddHabitos={setQtddHabitos} habitosfeitos={habitosfeitos} setHabitosFeitos={setHabitosFeitos} ></Hoje>}></Route>
+    <Route path='/habitos' element ={<Habitos dadosusuario={dadosusuario} habitdata={habitdata} setHabitData={setHabitData} listahabitos={listahabitos} setListaHabitos={setListaHabitos} setTodayHabits={setTodayHabits} habitosfeitos={habitosfeitos} setHabitosFeitos={setHabitosFeitos} ></Habitos>}/>
     <Route path='/historico' element ={<Historico></Historico>}/>
     </Routes>
     </BrowserRouter>
