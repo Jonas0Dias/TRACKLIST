@@ -8,8 +8,8 @@ export default function TodayHabits(props) {
     const [carregando, setCarregando] = React.useState(false)
     const [done, setDone] = React.useState(props.done)
     return (
-        <Habito  done={done}>
-            <div className="titulo" ><p>{props.t.name}</p><div onClick={(e) => {
+        <Habito   data-test = 'today-habit-container' done={done}>
+            <div className="titulo" ><p data-test = 'today-habit-name'>{props.t.name}</p><div data-test = 'today-habit-check' onClick={(e) => {
                 
                 setCarregando(true)
                  setDone(!done)
@@ -50,8 +50,8 @@ export default function TodayHabits(props) {
                 wrapperClassName=""
                 visible={true}
                  /> : <img src="./assets/img/check.png"></img> }</div></div>
-            <h1>{`Sequência atual: ${props.t.currentSequence} dias`}</h1>
-            <h2>{`Seu recorde: ${props.t.highestSequence} dias`}</h2>
+            <h1 data-test = 'today-habit-sequence'>{`Sequência atual: ${props.t.currentSequence} dias`}</h1>
+            <h2 data-test = 'today-habit-record'>{`Seu recorde: ${props.t.highestSequence} dias`}</h2>
         </Habito>
     )
 }

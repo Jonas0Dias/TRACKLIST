@@ -9,8 +9,7 @@ import CreateHabit from "./CreateHabit"
 import daysweek from "./diasdasemana"
 
 export default function Habitos(props) {
-
-    
+  
     const [habitos, setHabitos] = React.useState('')
     const [on, setOn] = React.useState(false)
     const config = {
@@ -35,7 +34,7 @@ export default function Habitos(props) {
                 <div className="habitspag">
                     <div className="topo">
                         <p>Meus hábitos</p>
-                        <button onClick={() => setOn(true)}><img src="./assets/img/+.png"></img></button>
+                        <button data-test = 'habit-create-btn' onClick={() => setOn(true)}><img src="./assets/img/+.png"></img></button>
                     </div>
                     <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config} setTodayHabits={props.setTodayHabits}></CreateHabit>
                     <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
@@ -59,7 +58,7 @@ export default function Habitos(props) {
                     
                     <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config} setTodayHabits={props.setTodayHabits} ></CreateHabit>
 
-                    {habitos.data.map(h => <Habito><div className="titulo"><p>{h.name}</p><img src="./assets/img/trash.png" onClick={() => {
+                    {habitos.data.map(h => <Habito data-test = 'habit-container'><div className="titulo"><p data-test = 'habit-name'>{h.name}</p><img data-test = 'habit-delete-btn' src="./assets/img/trash.png" onClick={() => {
                             axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${h.id}`, config).then(() => {console.log('sucesso')
                             axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config).then((resp) => {
                                 setHabitos(resp)
@@ -127,6 +126,7 @@ export const Habito = styled.div`
         font-size: 19.976px;
         line-height: 25px;
         color: #666666;
+        width: 70%;
     }
     img{
         width: 15px;
@@ -147,7 +147,7 @@ export const Habito = styled.div`
 `
 
 
-const Habits = styled.div`
+export const Habits = styled.div`
 height:100vh;
 background: #E5E5E5;
 .habitspag{
@@ -225,8 +225,7 @@ background: #E5E5E5;
     border-radius: 4.63636px;
 }
 .topo p{   
-    width: 148px;
-    height: 29px;
+   
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;

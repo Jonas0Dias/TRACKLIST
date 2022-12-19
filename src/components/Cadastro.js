@@ -18,10 +18,10 @@ export default function Cadastro(props){
         </Imagem>
         <Inputs>
 
-        <input type='email' placeholder="email" value={usuario.email} onChange={e => setUsuario({...usuario, email: e.target.value})} disabled={props.habilitado}></input>
-        <input type='text' placeholder="nome" onChange={e => setUsuario({...usuario, name: e.target.value})} disabled={props.habilitado}></input>
-        <input type='url' placeholder="url da imagem" onChange={e => setUsuario({...usuario, image: e.target.value})} disabled={props.habilitado}></input>
-        <input type='password' placeholder="senha" onChange={e => setUsuario({...usuario, password: e.target.value})} disabled={props.habilitado}></input>
+        <input data-test = 'email-input' type='email' placeholder="email" value={usuario.email} onChange={e => setUsuario({...usuario, email: e.target.value})} disabled={props.habilitado}></input>
+        <input data-test ='user-name-input' type='text' placeholder="nome" onChange={e => setUsuario({...usuario, name: e.target.value})} disabled={props.habilitado}></input>
+        <input data-test ='user-image-input' type='url' placeholder="url da imagem" onChange={e => setUsuario({...usuario, image: e.target.value})} disabled={props.habilitado}></input>
+        <input data-test = 'password-input' type='password' placeholder="senha" onChange={e => setUsuario({...usuario, password: e.target.value})} disabled={props.habilitado}></input>
 
         <Button onClick={() => {
             setEntrar('')
@@ -46,7 +46,7 @@ export default function Cadastro(props){
          </Button>
 
         </Inputs>
-        <Link to='/'><p className="cadastro" > Já tem uma conta? Faça login!</p></Link>
+        <Link to='/' data-test = 'login-link'><p className="cadastro" > Já tem uma conta? Faça login!</p></Link>
 
         </Home>
     )

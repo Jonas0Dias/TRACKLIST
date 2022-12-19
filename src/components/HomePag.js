@@ -15,9 +15,9 @@ export default function HomePag(props){
         </Imagem>
         <Inputs>
 
-        <input type='email' placeholder="email" disabled={props.habilitado} onChange={e => props.setLogin({...props.login, email: e.target.value})}></input>
-        <input type='password' placeholder="senha" disabled={props.habilitado} onChange={e => props.setLogin({...props.login, password: e.target.value})}></input>
-        <Button  onClick={() => {
+        <input data-test = 'email-input' type='email' placeholder="email" disabled={props.habilitado} onChange={e => props.setLogin({...props.login, email: e.target.value})}></input>
+        <input data-test = 'password-input' type='password' placeholder="senha" disabled={props.habilitado} onChange={e => props.setLogin({...props.login, password: e.target.value})}></input>
+        <Button data-test = 'login-btn' onClick={() => {
             setEntrar('')
             props.setHabilitado(true)
             axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', props.login).then((resp)=>  {
@@ -42,7 +42,7 @@ export default function HomePag(props){
          />}</Button>
 
         </Inputs>
-        <Link to='/cadastro'><p className="cadastro" > Não tem uma conta? Cadastre-se</p></Link>
+        <Link to='/cadastro' data-test = 'signup-link'><p className="cadastro" > Não tem uma conta? Cadastre-se</p></Link>
 
         </Home>
     )
@@ -107,4 +107,9 @@ const Button = styled.button`
     display:flex;
     justify-content: center;
     align-items:center;
+    transition: all 0.3s linear;
+    :hover{
+        scale: 0.9;
+        
+    }
 `

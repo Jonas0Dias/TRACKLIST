@@ -10,19 +10,23 @@ import TodayHabits from "./TodayHabits";
 export default function Hoje(props){
    
     const[color, setColor] = React.useState(false)
-    
     const config = {
         headers: {
             Authorization: `Bearer ${props.dadosusuario.data.token}`
         }
     }
 
-
     React.useEffect(() => {axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', config).then((resp) => {
         console.log(resp)
         props.setTodayHabits(resp.data)
         props.setQtddHabitos(parseInt(resp.data.length))  
-        resp.data.map(c => c.done===true ? props.setHabitosFeitos([...props.habitosfeitos, c.id]) : '')   
+        resp.data.map(c => {
+            if(!props.habitosfeitos.includes(c.id) && c.done===true){
+                props.setHabitosFeitos([...props.habitosfeitos, c.id])
+            }
+           
+        
+        })   
     } )}, [])
 
 
@@ -30,8 +34,8 @@ export default function Hoje(props){
         <Today color={props.habitosfeitos.length===0}>
         <Header dadosusuario={props.dadosusuario}></Header>
         <div className="day">
-        <h1>{dayjs().day()===1 ? 'Segunda-Feira' : dayjs().day()===2 ? 'Terça-Feira' : dayjs().day()===3 ? 'Quarta-Feira' : dayjs().day()===4 ? 'Quinta-Feira' : dayjs().day()===5 ? 'Sexta-Feira' : dayjs().day()===6 ? 'Sábado' : 'Domingo'}, {dayjs().date()}/{dayjs().month()+1}</h1>
-        <h2 >{props.habitosfeitos.length===0 ? 'Nenhum hábito concluído ainda' : `${props.habitosfeitos.length*100/props.qtddhabitos}% dos hábitos conclúidos`}</h2>
+        <h1 data-test = 'today'>{dayjs().day()===1 ? 'Segunda-Feira' : dayjs().day()===2 ? 'Terça-Feira' : dayjs().day()===3 ? 'Quarta-Feira' : dayjs().day()===4 ? 'Quinta-Feira' : dayjs().day()===5 ? 'Sexta-Feira' : dayjs().day()===6 ? 'Sábado' : 'Domingo'}, {dayjs().date()}/{dayjs().month()+1}</h1>
+        <h2 data-test = 'today-counter'>{props.habitosfeitos.length===0 ? 'Nenhum hábito concluído ainda' : `${Math.trunc(props.habitosfeitos.length*100/props.qtddhabitos)}% dos hábitos conclúidos`}</h2>
         </div>
         {/* Aqui é onde entra o conteúdo da página, abaixo de header e acima de fotter */}
         {props.todayhabits.map(t =><TodayHabits done={t.done} t={t} habitosfeitos={props.habitosfeitos} setHabitosFeitos={props.setHabitosFeitos} config={config} todayhabits={props.todayhabits} setTodayHabits={props.setTodayHabits} setQtddHabitos={props.setQtddHabitos}></TodayHabits> )}
@@ -41,7 +45,7 @@ export default function Hoje(props){
     )
 }
 
-const Today= styled.div`
+export const Today= styled.div`
 background: #E5E5E5;
 height: 100vh;
 

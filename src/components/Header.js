@@ -1,7 +1,7 @@
 import styled from "styled-components"
 export default function Header(props){
     return(
-        <Cabeçalho>
+        <Cabeçalho data-test = 'header'>
             <p>TrackIt</p>
             <img src={props.dadosusuario.data.image}></img>
             </Cabeçalho>

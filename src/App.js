@@ -23,7 +23,7 @@ function App() {
     <Route path="/cadastro" element={<Cadastro habilitado={habilitado} setHabilitado={setHabilitado}></Cadastro>}></Route>
     <Route path="/hoje" element={<Hoje dadosusuario={dadosusuario} setDadosUsuario={setDadosUsuario} todayhabits={todayhabits} setTodayHabits={setTodayHabits} qtddhabitos={qtddhabitos} setQtddHabitos={setQtddHabitos} habitosfeitos={habitosfeitos} setHabitosFeitos={setHabitosFeitos} ></Hoje>}></Route>
     <Route path='/habitos' element ={<Habitos dadosusuario={dadosusuario} habitdata={habitdata} setHabitData={setHabitData} listahabitos={listahabitos} setListaHabitos={setListaHabitos} setTodayHabits={setTodayHabits} habitosfeitos={habitosfeitos} setHabitosFeitos={setHabitosFeitos} ></Habitos>}/>
-    <Route path='/historico' element ={<Historico></Historico>}/>
+    <Route path='/historico' element ={<Historico dadosusuario={dadosusuario} habitdata={habitdata} setHabitData={setHabitData} listahabitos={listahabitos} setListaHabitos={setListaHabitos} setTodayHabits={setTodayHabits} habitosfeitos={habitosfeitos} setHabitosFeitos={setHabitosFeitos}></Historico>}/>
     </Routes>
     </BrowserRouter>
   );

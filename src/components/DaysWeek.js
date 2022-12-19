@@ -15,7 +15,7 @@ export default function DaysWeek(props){
     }, [])
 
     return (
-        <Botao dis={props.dis} dayselected={dayselected} on={on} onClick={() => {
+        <Botao data-test = 'habit-day' dis={props.dis} dayselected={dayselected} on={on} onClick={() => {
             console.log(props.habitdata.days)
             setOn(!on)        
             if (props.habitdata.days.includes(props.pos)){

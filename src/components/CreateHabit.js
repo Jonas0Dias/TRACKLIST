@@ -6,8 +6,8 @@ import daysweek from "./diasdasemana";
 export default function CreateHabit(props){
     
     return(
-        <CriarHabito on={props.on}>
-                        <input type='text' placeholder="nome do habito" value={props.habitdata.name} onChange={e => props.setHabitData({ ...props.habitdata, name: e.target.value })}></input>
+        <CriarHabito data-test = 'habit-create-container' on={props.on}>
+                        <input data-test = 'habit-name-input' type='text' placeholder="nome do habito" value={props.habitdata.name} onChange={e => props.setHabitData({ ...props.habitdata, name: e.target.value })}></input>
                         <div className="days">
                             {daysweek.map(d =>
                                 <DaysWeek dis={false} days={[]} pos={d.pos} name={d.name} habitdata={props.habitdata} setHabitData={props.setHabitData}></DaysWeek>
@@ -15,12 +15,12 @@ export default function CreateHabit(props){
                             )}
                         </div>
                         <div className="botoes">
-                            <button onClick={() => {
+                            <button data-test = 'habit-create-cancel-btn' onClick={() => {
                                 
                                 props.setOn(false)}
                                 
                                 }>Cancelar</button>
-                            <button onClick={() => {
+                            <button data-test = 'habit-create-save-btn' onClick={() => {
                                 console.log(props.habitdata)
                                 props.setOn(false);
                                 axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', props.habitdata, props.config).then((resp) => {
