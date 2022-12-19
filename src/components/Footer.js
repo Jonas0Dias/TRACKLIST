@@ -1,16 +1,16 @@
 import styled from "styled-components"
 import { CircularProgressbar, buildStyles } from'react-circular-progressbar';
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { Navigate } from "react-router-dom";
+
+
 
 
 export default function Footer(props) {
-
+   
     return (
         <Rodapé>
-            
-            <CircularProgressbar onCLick={() => console.log('teste')}
+            <Link to='/habitos'><p>Hábitos</p></Link>
+            <Link to='/hoje'><CircularProgressbar onCLick={() => console.log('teste')}
                 className="barraprogresso"
                 value={props.habitosfeitos.length*100/props.qtddhabitos} text={`Hoje`}
                 background
@@ -23,8 +23,8 @@ export default function Footer(props) {
                     textColor: "#fff",
                     pathColor: "#fff",
                     trailColor: "transparent"
-                })} />
-            <Link to='/habitos'><p>Hábitos</p></Link>
+                })} /></Link>
+            
             <Link to='/historico'><p>Histórico</p></Link>
         </Rodapé>
     )

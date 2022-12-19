@@ -40,7 +40,7 @@ export default function Habitos(props) {
                     <CreateHabit on={on} setOn={setOn} habitdata={props.habitdata} setHabitData={props.setHabitData} setHabitos={setHabitos} config={config} setTodayHabits={props.setTodayHabits}></CreateHabit>
                     <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
                 </div>
-                <Footer></Footer>
+                <Footer qtddhabitos={props.qtddhabitos} habitosfeitos={props.habitosfeitos}></Footer>
             </Habits>
         )
     }
