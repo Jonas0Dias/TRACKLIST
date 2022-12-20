@@ -43,10 +43,10 @@ export default function CreateHabit(props){
 
 
 const CriarHabito = styled.div`
-margin-left: 15px;
+margin:auto;
 margin-top: 22px;
 display:${props => props.on ? 'block' : 'none'};
-width: 95%;
+width: 94%;
 padding: 17px 17px;
 box-sizing: border-box;
 left: 17px;

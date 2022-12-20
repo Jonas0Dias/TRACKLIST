@@ -26,9 +26,10 @@ export default function HomePag(props){
                 console.log(resp)
                 navigate('/hoje')
         }).catch(() => {
+            alert('Usuário ou senha incorretos')
             props.setHabilitado(false)
             setEntrar('Entrar')
-            alert('Usuário ou senha incorretos')
+            
         })
         }} > {entrar==='Entrar' ? entrar : <ThreeDots 
         height="80" 

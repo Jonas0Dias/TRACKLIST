@@ -169,7 +169,7 @@ background: #E5E5E5;
     width:100%;
     display:flex;
     justify-content:end;
-    left: -25px;
+    left: -47px;
     top: 300px;
     position:absolute;
     button:nth-child(1){

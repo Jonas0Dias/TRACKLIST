@@ -30,6 +30,7 @@ export default function Cadastro(props){
                 props.setHabilitado(false);
                 navigate('/')
         }).catch(() => {
+            alert('Não foi possível cadastrar o usuário.')
             props.setHabilitado(false)
             setEntrar('Entrar')
         })
