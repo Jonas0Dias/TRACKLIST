@@ -7,7 +7,7 @@ import { ThreeDots } from "react-loader-spinner"
 export default function Cadastro(props){
     const navigate=useNavigate();
     const [usuario, setUsuario] = React.useState({email:'',name:'',image:'',password:''})
-    const[entrar, setEntrar] = React.useState('Entrar')
+    const[entrar, setEntrar] = React.useState('Cadastrar')
     console.log(usuario)
     return(
         <Home>
@@ -32,9 +32,9 @@ export default function Cadastro(props){
         }).catch(() => {
             alert('Não foi possível cadastrar o usuário.')
             props.setHabilitado(false)
-            setEntrar('Entrar')
+            setEntrar('Cadastrar')
         })
-        }}> {entrar==='Entrar' ? entrar : <ThreeDots 
+        }}> {entrar==='Cadastrar' ? entrar : <ThreeDots 
         height="80" 
         width="80" 
         radius="9"
